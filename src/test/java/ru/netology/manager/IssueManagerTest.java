@@ -47,7 +47,7 @@ class IssueManagerTest {
     @Test
     public void shouldFilterByAuthor() {
         List<Issue> expected = List.of(issue1, issue4);
-        List<Issue> actual = IssueManager.filterBy(manager.getAll(), issue -> issue.getAuthor().equalsIgnoreCase("author1"));
+        List<Issue> actual = manager.filterByAuthor("author1");
 
         assertEquals(expected, actual);
     }
@@ -71,7 +71,7 @@ class IssueManagerTest {
     @Test
     public void shouldFilterByTag() {
         List<Issue> expected = List.of(issue2, issue4);
-        List<Issue> actual = IssueManager.filterBy(manager.getAll(), issue -> issue.getTags().contains("tag2"));
+        List<Issue> actual = manager.filterByTag("tag2");
 
         assertEquals(expected, actual);
     }
@@ -79,7 +79,7 @@ class IssueManagerTest {
     @Test
     public void shouldFilterByTags() {
         List<Issue> expected = List.of(issue3);
-        List<Issue> actual = IssueManager.filterBy(manager.getAll(), issue -> issue.getTags().containsAll(Set.of("tag1", "tag3")));
+        List<Issue> actual = manager.filterByTag(Set.of("tag1", "tag3"));
 
         assertEquals(expected, actual);
     }
@@ -87,7 +87,7 @@ class IssueManagerTest {
     @Test
     public void shouldFilterByAssignee() {
         List<Issue> expected = List.of(issue1, issue2, issue4);
-        List<Issue> actual = IssueManager.filterBy(manager.getAll(), issue -> issue.getAssignees().contains("assignee1"));
+        List<Issue> actual = manager.filterByAssignee("assignee1");
 
         assertEquals(expected, actual);
     }
@@ -95,7 +95,7 @@ class IssueManagerTest {
     @Test
     public void shouldFilterByAssignees() {
         List<Issue> expected = List.of(issue4);
-        List<Issue> actual = IssueManager.filterBy(manager.getAll(), issue -> issue.getAssignees().containsAll(Set.of("assignee1", "assignee2")));
+        List<Issue> actual = manager.filterByAssignee(Set.of("assignee1", "assignee2"));
 
         assertEquals(expected, actual);
     }
